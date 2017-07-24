@@ -13,7 +13,7 @@ public class ArrayPairSum {
 	 * @param nums
 	 * @return
 	 */
-	public static int arrayPairSum(int[] nums) {
+	public int arrayPairSum(int[] nums) {
 		int result = 0;
 		
 		Arrays.sort(nums);
