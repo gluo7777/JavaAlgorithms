@@ -5,60 +5,68 @@ import java.util.List;
 
 /**
  * More efficient with a doubly linked list
+ * 
  * @author gluo7
  *
  */
 public class Mergesort {
+
+	public static void sort(int[] arr) {
+		if (arr.length < 2) {
+			return;
+		}
+
+		int mid = arr.length / 2;
+
+		int[] L = new int[mid];
+		int[] R = new int[arr.length - mid];
+
+		for (int i = 0; i < mid; i++)
+			L[i] = arr[i];
+		for (int j = mid; j < arr.length; j++)
+			R[j - mid] = arr[j];
+
+		sort(L);
+		sort(R);
+
+		merge(L, R, arr);
+	}
+
 	/**
+	 * Assumes that left and right halves are sorted
 	 * 
-	 * @param list to be sorted
-	 * @return a sorted list
+	 * @param arr
+	 *            base array
+	 * @param l
+	 *            beginning index
+	 * @param m
+	 *            middle index / split
+	 * @param r
+	 *            right index
 	 */
-	public static int [] sort(int [] arr, int l, int r){
-		if(arr.length <= 1){
-			return arr;
+	public static void merge(int[] left, int[] right, int[] arr) {
+		int len1 = left.length, len2 = right.length;
+		int i = 0, j = 0, k = 0;
+		while (i < len1 && j < len2) {
+			if (left[i] <= right[j]) {
+				arr[k] = left[i];
+				i++;
+			} else {
+				arr[k] = right[j];
+				j++;
+			}
+			k++;
 		}
-		
-		int m = (l + r) / 2;
-		
-		sort(arr,l,m);
-		sort(arr,m + 1,r);
-		
-		return merge(arr,l,m,r);
-	}
-	
-	/**
-	 * Orders and combines two lists
-	 * @param list
-	 * @return merged, sorted list
-	 */
-	private static int[] merge(int [] arr, int l, int m, int r){
-		int [] merged = new int[arr.length];
-		
-		while(l < m && m < r){
-			
-			
-			
-			l++;
-			m++;
+		while (i < len1) {
+			arr[k] = left[i];
+			i++;
+			k++;
 		}
-		
-		return merged;
+		while (j < len2) {
+			arr[k] = right[j];
+			j++;
+			k++;
+		}
 	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
