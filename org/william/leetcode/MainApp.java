@@ -1,5 +1,8 @@
+package org.william.leetcode;
 
-import org.william.leetcode.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author gluo7
